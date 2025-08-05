@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Learn Vocabulary</title>
+</head>
+<body>
+  <h1 id="word">Loading...</h1>
+
+  <div id="description-section" style="margin-top: 20px;">
+    <label for="description">Beschreibe das Wort auf Englisch:</label><br>
+    <textarea id="description" rows="3" cols="50"></textarea><br>
+    <button onclick="evaluateDescription()">Antwort überprüfen</button>
+  </div>
+
+  <div id="solution" style="margin-top: 20px; display: none;">
+    <p><strong>Übersetzung:</strong> <span id="translation"></span></p>
+    <p><strong>Beispielsatz:</strong> <span id="example"></span></p>
+    <button onclick="loadWord()">Nächstes Wort</button>
+  </div>
+
+  <div id="feedback-section" style="margin-top: 20px; display: none;">
+    <p><strong>Gemini Bewertung:</strong> <span id="score"></span> / 5</p>
+    <p><strong>Feedback:</strong> <span id="feedback"></span></p>
+  </div>
+
+  <script>
+    let currentWordId = null;
+    let vocab = null;
+
+    async function loadWord() {
+      document.getElementById("solution").style.display = "none";
+      document.getElementById("feedback-section").style.display = "none";
+      document.getElementById("description").value = "";
+      document.getElementById("score").textContent = "";
+      document.getElementById("feedback").textContent = "";
+
+      const res = await fetch("/learn/next");
+      const data = await res.json();
+      vocab = data;
+      document.getElementById("word").textContent = data.word;
+      currentWordId = data.id;
+    }
+
+    async function evaluateDescription() {
+      const description = document.getElementById("description").value;
+      const response = await fetch(`/evaluate/${currentWordId}`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({ description })
+      });
+      const result = await response.json();
+      document.getElementById("score").textContent = result.score;
+      document.getElementById("feedback").textContent = result.feedback;
+      document.getElementById("translation").textContent = vocab.translation;
+      document.getElementById("example").textContent = vocab.example;
+      document.getElementById("solution").style.display = "block";
+      document.getElementById("feedback-section").style.display = "block";
+    }
+
+    loadWord();
+  </script>
+</body>
+</html>
