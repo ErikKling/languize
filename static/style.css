@@ -1,0 +1,117 @@
+
+body, h1, h2, h3, p, ul, li, button, input {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Inter', 'Segoe UI', Arial, sans-serif;
+}
+
+
+body {
+  background: linear-gradient(120deg, #f8fafc 0%, #e0e7ff 100%);
+  min-height: 100vh;
+  color: #22223b;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.container {
+  background: #fff;
+  border-radius: 16px;
+  box-shadow: 0 4px 24px rgba(60, 72, 88, 0.08);
+  padding: 2rem 2.5rem;
+  margin-top: 3rem;
+  max-width: 600px;
+  width: 100%;
+}
+
+h1, h2 {
+  color: #3f51b5;
+  margin-bottom: 1rem;
+  font-weight: 700;
+}
+
+h1 {
+  font-size: 2.2rem;
+  letter-spacing: 1px;
+}
+
+h2 {
+  font-size: 1.5rem;
+}
+
+
+p {
+  margin-bottom: 1rem;
+  line-height: 1.6;
+}
+
+
+.card {
+  background: #f5f7fa;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(60, 72, 88, 0.06);
+  padding: 1.2rem 1.5rem;
+  margin-bottom: 1.5rem;
+  transition: box-shadow 0.2s;
+}
+
+.card:hover {
+  box-shadow: 0 6px 24px rgba(60, 72, 88, 0.12);
+}
+
+button, .btn {
+  background: linear-gradient(90deg, #3f51b5 0%, #5c6bc0 100%);
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  padding: 0.7rem 1.4rem;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  margin-top: 1rem;
+  box-shadow: 0 2px 8px rgba(60, 72, 88, 0.08);
+  transition: background 0.2s, box-shadow 0.2s;
+}
+
+button:hover, .btn:hover {
+  background: linear-gradient(90deg, #5c6bc0 0%, #3f51b5 100%);
+  box-shadow: 0 4px 16px rgba(60, 72, 88, 0.16);
+}
+
+
+input[type="text"], input[type="search"], textarea {
+  width: 100%;
+  padding: 0.7rem 1rem;
+  border: 1px solid #cfd8dc;
+  border-radius: 8px;
+  font-size: 1rem;
+  margin-bottom: 1rem;
+  background: #f8fafc;
+  transition: border 0.2s;
+}
+
+input:focus, textarea:focus {
+  border-color: #3f51b5;
+  outline: none;
+}
+
+
+@media (max-width: 700px) {
+  .container {
+    padding: 1rem;
+    margin-top: 1rem;
+  }
+  h1 {
+    font-size: 1.5rem;
+  }
+}
+
+
+.text-center {
+  text-align: center;
+}
+
+.mt-2 { margin-top: 2rem; }
+.mb-2 { margin-bottom: 2rem; }
